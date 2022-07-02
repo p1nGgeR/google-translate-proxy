@@ -1,0 +1,20 @@
+parameters:
+    google.client.config:
+        key: '%env(GOOGLE_TRANSLATE_API_KEY)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    Google\Cloud\Translate\V2\TranslateClient:
+        class: 'Google\Cloud\Translate\V2\TranslateClient'
+        arguments: [ '%google.client.config%' ]

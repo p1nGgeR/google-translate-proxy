@@ -1,0 +1,24 @@
+api_platform:
+    mapping:
+        paths:
+            - '%kernel.project_dir%/src/Entity'
+            - '%kernel.project_dir%/src/Dto'
+    patch_formats:
+        json: ['application/merge-patch+json']
+    formats:
+        json:
+            mime_types:
+                - 'application/json'
+        html:
+            mime_types:
+                - 'text/html'
+    path_segment_name_generator: api_platform.path_segment_name_generator.dash
+    default_operation_path_resolver: api_platform.operation_path_resolver.dash
+    eager_loading:
+        enabled: true
+        force_eager: false
+    swagger:
+        versions: [3]
+    show_webby: false
+    exception_to_status:
+        App\Exception\TranslationFailed: 500
